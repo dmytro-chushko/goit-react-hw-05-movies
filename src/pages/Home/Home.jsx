@@ -1,6 +1,6 @@
-import { Title, TrendList } from './Home.styled';
-import TrendFilm from 'components/TrendFilm';
-import { fetchFilmsOnTrend } from '../../helpers/fetchAPI';
+import { Title } from './Home.styled';
+import MovieList from 'components/MovieList';
+import { fetchMovieOnTrend } from '../../helpers/fetchAPI';
 import { useState, useEffect } from 'react';
 
 const Home = () => {
@@ -8,7 +8,7 @@ const Home = () => {
 
   useEffect(() => {
     const runFetch = async () => {
-      const data = await fetchFilmsOnTrend();
+      const data = await fetchMovieOnTrend();
       setDataTrend(data);
     };
     runFetch();
@@ -17,12 +17,7 @@ const Home = () => {
   return (
     <>
       <Title>Trending today</Title>
-      <TrendList>
-        {dataTrend &&
-          dataTrend.map(({ id, original_title }) => (
-            <TrendFilm key={id} title={original_title} id={id} />
-          ))}
-      </TrendList>
+      <MovieList moviesArr={dataTrend} />
     </>
   );
 };
