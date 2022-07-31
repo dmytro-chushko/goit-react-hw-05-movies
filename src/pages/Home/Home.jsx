@@ -9,7 +9,7 @@ const Home = () => {
   useEffect(() => {
     const runFetch = async () => {
       const data = await fetchMovieOnTrend();
-      setDataTrend(data);
+      setDataTrend([...data]);
     };
     runFetch();
   }, []);
