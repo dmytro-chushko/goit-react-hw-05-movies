@@ -1,5 +1,5 @@
 import { fetchMovieDetails } from 'helpers/fetchAPI';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import {
   DetailsContainer,
@@ -15,9 +15,13 @@ import {
   Link,
 } from './MovieDetails.styled';
 
+import GoBackButton from 'components/GoBackButton';
+
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieObj, setMovieObj] = useState({});
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
     const getMovieDetails = async movieId => {
@@ -41,6 +45,7 @@ const MovieDetails = () => {
     <>
       {Object.keys(movieObj).length > 0 && (
         <>
+          <GoBackButton backLinkHref={backLinkHref} />
           <DetailsContainer>
             <MoviePoster src={imgUrl} alt={original_title} />
             <DescriptionContainer>
@@ -58,10 +63,14 @@ const MovieDetails = () => {
             AdditionalInformatin
             <InfoList>
               <InfoItem>
-                <Link to="cast">Cast</Link>
+                <Link to="cast" state={{ from: backLinkHref }}>
+                  Cast
+                </Link>
               </InfoItem>
               <InfoItem>
-                <Link to="reviews">Reviews</Link>
+                <Link to="reviews" state={{ from: backLinkHref }}>
+                  Reviews
+                </Link>
               </InfoItem>
             </InfoList>
             <Outlet />

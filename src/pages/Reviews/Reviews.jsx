@@ -10,13 +10,10 @@ const Reviews = () => {
   useEffect(() => {
     const getReviewsArr = async movieId => {
       const data = await fetchMovieReviews(movieId);
-      console.log(data);
       setReviewsArr(data);
     };
     getReviewsArr(movieId);
   }, [movieId]);
-
-  console.log(reviewsArr);
 
   return reviewsArr.length > 0 && <ReviewsList reviewsArr={reviewsArr} />;
 };

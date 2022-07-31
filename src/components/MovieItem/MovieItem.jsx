@@ -1,9 +1,13 @@
+import { useLocation } from 'react-router-dom';
 import { ResultsItem, Link } from './MovieItem.styled';
 
 const MovieItem = ({ id, title }) => {
+  const location = useLocation();
   return (
     <ResultsItem>
-      <Link to={`/movies/${id}`}>{title}</Link>
+      <Link to={`/movies/${id}`} state={{ from: location }}>
+        {title}
+      </Link>
     </ResultsItem>
   );
 };
