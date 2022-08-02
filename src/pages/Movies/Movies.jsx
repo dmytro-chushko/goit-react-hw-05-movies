@@ -39,7 +39,7 @@ const Movies = () => {
 
   return (
     <>
-      <Searchbar onSubmit={handleSubmit} />
+      <Searchbar onSubmit={handleSubmit} query={query} />
       {moviesArr.length > 0 && <MovieList moviesArr={moviesArr} />}
     </>
   );

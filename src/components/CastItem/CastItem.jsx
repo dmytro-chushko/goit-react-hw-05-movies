@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Item, Photo, Text } from './CastItem.styled';
 
 const CastItem = ({ photo, name, char }) => {
@@ -12,3 +13,9 @@ const CastItem = ({ photo, name, char }) => {
 };
 
 export default CastItem;
+
+CastItem.propTypes = {
+  photo: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  char: PropTypes.string.isRequired,
+};

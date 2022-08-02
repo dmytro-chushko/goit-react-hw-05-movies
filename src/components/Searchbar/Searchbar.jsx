@@ -8,10 +8,10 @@ import {
   SearchButtonLabel,
 } from './Searchbar.styled';
 
-const Searchbar = ({ onSubmit }) => {
+const Searchbar = ({ onSubmit, query }) => {
   return (
     <Formik
-      initialValues={{ search: '' }}
+      initialValues={{ search: query ?? '' }}
       onSubmit={({ search }) => onSubmit(search)}
     >
       <SearchForm>
@@ -33,6 +33,7 @@ const Searchbar = ({ onSubmit }) => {
 
 Searchbar.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  query: PropTypes.string,
 };
 
 export default Searchbar;
