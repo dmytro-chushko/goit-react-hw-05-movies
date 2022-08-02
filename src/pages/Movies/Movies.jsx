@@ -1,9 +1,9 @@
 import { Notify } from 'notiflix';
 import { fetchSearchMovies } from 'helpers/fetchAPI';
-import Searchbar from 'components/Searchbar';
-import MovieList from 'components/MovieList';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import Searchbar from 'components/Searchbar';
+import MovieList from 'components/MovieList';
 
 const Movies = () => {
   const [moviesArr, setMoviesArr] = useState([]);
@@ -15,6 +15,11 @@ const Movies = () => {
 
     const getMovieBySearchTerm = async query => {
       const data = await fetchSearchMovies(query);
+      if (data.length === 0) {
+        setMoviesArr([]);
+        Notify.info('Sorry, We find nothing, try another auery');
+        return;
+      }
       setMoviesArr([...data]);
     };
     getMovieBySearchTerm(query);

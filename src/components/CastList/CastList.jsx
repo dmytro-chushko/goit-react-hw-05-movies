@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { List } from './CastList.styled';
 import CastItem from 'components/CastItem';
 
@@ -12,3 +13,14 @@ const CastList = ({ castArr }) => {
 };
 
 export default CastList;
+
+CastList.propTypes = {
+  castArr: PropTypes.arrayOf(
+    PropTypes.shape({
+      profile_path: PropTypes.string,
+      name: PropTypes.string.isRequired,
+      character: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};
